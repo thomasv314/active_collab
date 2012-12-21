@@ -1,11 +1,18 @@
 class ActiveCollab::Object 
 
+  def initialize(hash = {}) 
+    set_attributes(hash)
+  end
+
+  def initialize(hash = {}, client = nil) 
+    set_attributes(hash)
+    @client = client
+  end
+
   def set_attributes(hash)
-    puts "MY CLASS! #{self.class}"
-    puts "WTF? #{self}"
     hash.each do |key, value|
-      method = "#{key}="
-      if self.class.method_defined? method
+      method = "#{key}=".to_sym
+      if self.methods.include? method
         self.send(method, value)
       end
     end
