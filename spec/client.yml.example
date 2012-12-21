@@ -1,0 +1,4 @@
+active_collab:
+  api_url: "http://the.url.to.activecollab.com/public/api.php"
+  api_key: "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789" 
+
