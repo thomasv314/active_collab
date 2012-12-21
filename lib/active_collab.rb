@@ -14,9 +14,24 @@ module ActiveCollab
     include ActiveCollab::API::Users
 
   	def initialize(url, api_key)
-  		@api_url = url
+      @api_url = url
   		@api_key = api_key
   	end
+
+    def ac_get_request(path)
+      path = build_url(path)
+      response = HTTParty.get(path)
+      if response.code == 200
+        response
+      else
+        false
+      end
+    end
+
+    protected
+    def build_url(path)
+      "#{@api_url}?path_info=#{path}&auth_api_token=#{@api_key}&format=json"
+    end
 
   end
 end

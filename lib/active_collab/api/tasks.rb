@@ -1,25 +1,24 @@
 require 'active_collab/task'
 
 module ActiveCollab
-	module API
-		module Tasks
+  module API
+    module Tasks
 
-			def tasks(project_id)
-				url = "#{@api_url}?path_info=/projects/#{project_id}/tasks&auth_api_token=#{@api_key}"
-				response = HTTParty.get(url)
-				response_tasks = response["tasks"].first[1]
-				if response_tasks.kind_of?(Hash)
-					tasks = [ActiveCollab::Task.from_hash(response_tasks)]
-				else
-					tasks = response_tasks.collect do |t|
-						ActiveCollab::Task.from_hash(t)
-					end
-				end
-				tasks
-			end
+      def tasks(project_id)
+        response_tasks = ac_get_request("projects/#{project_id}/tasks")
+        if response_tasks.kind_of?(Hash)
+          ActiveCollab::Task.new(response_tasks)
+        elsif response_tasks.kind_of?(Array)
+          response_tasks.collect do |task|
+            ActiveCollab::Task.new(task)
+          end
+        else
+          response_tasks
+        end
+      end
 
-		end
-	end
+    end
+  end
 end
 
- 
+
