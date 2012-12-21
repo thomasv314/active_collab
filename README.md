@@ -37,7 +37,9 @@ tasks = client.tasks(1)
 ```
 
 ## Tests
-To run the test suite you must first create a config file in (`spec/client.yml')
+To run the test suite you must first create a config file in (`spec/client.yml`).
+Afterwards `bundle install` and `bundle exec guard` will give you a PRY console capable
+of running the specs.
 
 ```yaml
 active_collab:
