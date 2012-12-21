@@ -36,6 +36,15 @@ tasks = client.tasks(1)
 
 ```
 
+## Tests
+To run the test suite you must first create a config file in (`spec/client.yml')
+
+```yaml
+active_collab:
+  api_url: "http://the.url.to.activecollab.com/public/api.php"
+  api_key: "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789" 
+```
+
 
 ## Contributing
 
