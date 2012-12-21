@@ -25,9 +25,4 @@ class ActiveCollab::Task
     id.nil?
   end
 
-  def self.from_hash(hash)
-    task = ActiveCollab::Task.new(hash)
-  end
-
-
 end

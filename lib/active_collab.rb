@@ -16,7 +16,8 @@ module ActiveCollab
   	def initialize(url, api_key)
       @api_url = url
   		@api_key = api_key
-  	end
+      @client = self
+    end
 
     def ac_get_request(path)
       path = build_url(path)
