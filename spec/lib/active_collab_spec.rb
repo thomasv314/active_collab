@@ -6,7 +6,6 @@ describe 'ActiveCollab' do
     @client = ActiveCollab::Client.new(API_URL, API_KEY)
   end
 
-
   describe '#initialize' do
     it "should return an Active Collab client" do  
       @client.class.should eq(ActiveCollab::Client)
@@ -14,11 +13,9 @@ describe 'ActiveCollab' do
   end
 
   describe '#projects' do
-
     it "should return an array of projects" do
       @client.projects.class.should eq(Array)
     end
-
   end
 
 end

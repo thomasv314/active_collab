@@ -4,12 +4,17 @@
 # loaded once.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-
+require 'json'
 require 'active_collab'
-config = YAML::load(File.join(File.dirname(File.expand_path(__FILE__)), 'client.yml'))
 
-@API_URL = config['client']['api_url']
-@API_KEY = config['client']['api_key']
+# Load the configuration file
+config_file = File.open(File.join(File.dirname(File.expand_path(__FILE__)), "config", "client.yml"))
+CONFIG = YAML.load(config_file)
+puts "Loaded this config: \n #{JSON.pretty_generate(JSON.parse(CONFIG.to_json))} \n\n"
+
+# Set some constants
+API_URL = CONFIG['client']['api_url']
+API_KEY = CONFIG['client']['api_key']
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
