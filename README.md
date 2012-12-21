@@ -37,16 +37,20 @@ tasks = client.tasks(1)
 ```
 
 ## Tests
-To run the test suite you must first create a config file in (`spec/client.yml`).
-Afterwards `bundle install` and `bundle exec guard` will give you a PRY console capable
-of running the specs.
+To run the test suite you must first create a config file in (`spec/client.yml`). 
+Afterwards `bundle install` and `bundle exec guard` will give you a PRY console capable of running the specs.
+For 100% pass you'll need to fill in the projects section with slugs for projects relate to the attribute name. 
 
 ```yaml
-active_collab:
+client:
   api_url: "http://the.url.to.activecollab.com/public/api.php"
   api_key: "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789" 
-```
 
+projects: 
+  with_tasks: "slug-of-project-with-tasks"
+  without_tasks: "slug-of-project-without-any-tasks"
+  bad_url: "lolololwat" 
+```
 
 ## Contributing
 
