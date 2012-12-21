@@ -16,6 +16,7 @@ puts "Loaded this config: \n #{JSON.pretty_generate(JSON.parse(CONFIG.to_json))}
 API_URL = CONFIG['client']['api_url']
 API_KEY = CONFIG['client']['api_key']
 
+
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true

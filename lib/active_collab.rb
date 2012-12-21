@@ -23,7 +23,7 @@ module ActiveCollab
       path = build_url(path)
       response = HTTParty.get(path)
       if response.code == 200
-        response
+        response.parsed_response
       else
         false
       end
