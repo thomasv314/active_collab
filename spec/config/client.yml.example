@@ -2,3 +2,7 @@ client:
   api_url: "http://the.url.to.activecollab.com/public/api.php"
   api_key: "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789" 
 
+projects: 
+  with_tasks: "slug-of-project-with-tasks"
+  without_tasks: "slug-of-project-without-any-tasks"
+  
