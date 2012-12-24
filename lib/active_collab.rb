@@ -1,5 +1,5 @@
 require 'httparty'
-require "active_collab/version"
+require 'active_collab/version'
 require 'active_collab/api/projects'
 require 'active_collab/api/tasks'
 require 'active_collab/api/time_records'
@@ -27,6 +27,12 @@ module ActiveCollab
       else
         false
       end
+    end
+
+    def ac_post_request(path, body)
+      path = build_url(path)
+      body['submitted'] = 'submitted'
+      response = HTTParty.post(path,body)
     end
 
     protected

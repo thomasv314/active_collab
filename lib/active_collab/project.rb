@@ -11,4 +11,8 @@ class ActiveCollab::Project < ActiveCollab::Object
     end
   end
 
+  def new_task
+    ActiveCollab::Task.new(project_id: id)
+  end
+
 end
