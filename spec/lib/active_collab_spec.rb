@@ -18,4 +18,12 @@ describe 'ActiveCollab' do
     end
   end
 
+  describe '#project(id)' do
+    it "should return the project you're looking for" do
+      id = CONFIG['projects']['with_tasks']
+      project = @client.project(CONFIG['projects']['with_tasks'])
+      
+      project.id.should eq(id)
+    end
+  end
 end

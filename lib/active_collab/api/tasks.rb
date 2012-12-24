@@ -12,6 +12,8 @@ module ActiveCollab
           response_tasks.collect do |task|
             ActiveCollab::Task.new(task)
           end
+        elsif response_tasks.nil?
+          []
         else
           response_tasks
         end

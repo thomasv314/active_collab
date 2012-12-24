@@ -19,6 +19,15 @@ module ActiveCollab
         end
 			end
 
-		end
+      def project(id)
+        project_response = ac_get_request("/projects/#{id}")
+        if project_response
+          ActiveCollab::Project.new(project_response)
+        else
+          false
+        end
+      end
+
+    end
 	end
 end
