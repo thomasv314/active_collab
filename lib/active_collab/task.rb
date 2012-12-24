@@ -1,4 +1,5 @@
 require 'active_collab/object'
+
 class ActiveCollab::Task < ActiveCollab::Object 
   
   attr_accessor :id, :name, :permalink, :state, :visibility, :is_completed, 

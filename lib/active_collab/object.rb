@@ -18,6 +18,10 @@ class ActiveCollab::Object
     end
   end
 
+  def saved?
+    !self.id.nil?
+  end
+
   def client
     @client
   end

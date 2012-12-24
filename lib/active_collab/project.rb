@@ -5,10 +5,9 @@ class ActiveCollab::Project < ActiveCollab::Object
 
   def tasks
     if !@client.nil?
-      puts "Getting tasks for this project." 
       @client.tasks(self.id)
     else
-      puts "Cannot get tasks for this project."
+      []
     end
   end
 
