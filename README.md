@@ -1,7 +1,12 @@
 # ActiveCollab
 
-Ruby client for the active collab 3 Api.<br>
-This is a work in progress on it's early development.
+Ruby API Client for ActiveCollab 3.
+This is a work in progress, forked from `jera/active_collab`. 
+
+It has at this point become largely a rewrite of the original code base to provide a more ActiveModel-ish feel to the client.
+I have tried my hardest (and I think I've succeeded) at maintaining backwards compatibility with the original codebase and it's methods.
+
+[![Build Status](https://travis-ci.org/tommyvyo/active_collab.png?branch=master)](https://travis-ci.org/tommyvyo/active_collab)
 
 ## Installation
 
@@ -51,6 +56,9 @@ projects:
   without_tasks: "slug-of-project-without-any-tasks"
   bad_url: "lolololwat" 
 ```
+
+Contributions will not be accepted if they do not pass on Travis-CI.
+
 
 ## Contributing
 
