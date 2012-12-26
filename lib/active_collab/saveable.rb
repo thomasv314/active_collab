@@ -14,6 +14,10 @@ module ActiveCollab::Saveable
     true   
   end
 
+  def saved?
+    !self.id.nil?
+  end
+
   def build_saveable_route(string)
     array = string.split("/")
     built_array = []
