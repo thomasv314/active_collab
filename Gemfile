@@ -7,6 +7,11 @@ gem 'httparty'
 gem 'activesupport'
 gem 'activemodel'
 
+group :test do 
+  gem 'rake'
+  gem 'rspec'
+end
+
 group :development do
   gem 'rspec'
   gem 'guard'
