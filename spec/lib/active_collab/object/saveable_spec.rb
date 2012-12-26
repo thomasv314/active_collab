@@ -35,7 +35,6 @@ describe ActiveCollab::Object::Saveable do
   end
 
   describe ".has_save_routes" do
-
     class SaveRoutesTest 
       include ActiveCollab::Object::Saveable
       attr_accessor :id
@@ -55,11 +54,10 @@ describe ActiveCollab::Object::Saveable do
     it "the instance methods for each key should return data pertinent to that instance" do 
       srt = SaveRoutesTest.new
       srt.id = 5
-
+      
       srt.bananas_object_path.should eq("/projects/5/bananas")
       srt.create_object_path.should eq("/projects/5")
     end
-
   end
 
 end
