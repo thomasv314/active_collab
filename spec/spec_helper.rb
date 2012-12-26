@@ -7,9 +7,21 @@
 require 'json'
 require 'active_collab'
 
-TEST_API_RESPONSES = ENV['TEST_API']
+RSpec.configure do |config|
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+  config.run_all_when_everything_filtered = true
+  config.filter_run :focus
 
-if (TEST_API_RESPONSES)
+  # Run specs in random order to surface order dependencies. If you find an
+  # order dependency and want to debug it, you can fix the order by providing
+  # the seed, which is printed after each run.
+  #     --seed 1234
+  config.order = 'random'
+end
+
+TESTING_API_RESPONSES = ENV['TEST_API']
+
+if (TESTING_API_RESPONSES)
   puts "TEST_API_RESPONSES variable set. Loading configuration file to test ActiveCollab API." 
   # Load the configuration file
   config_file = File.open(File.join(File.dirname(File.expand_path(__FILE__)), "config", "client.yml"))
@@ -21,19 +33,7 @@ if (TEST_API_RESPONSES)
   API_KEY = CONFIG['client']['api_key']
 else
   puts "TEST_API_RESPONSES variable was not set. Skipping API tests."
-  API_URL = "phony.com"
+  API_URL = "http://phony.com"
   API_KEY = "baloney"
-end
-
-RSpec.configure do |config|
-  config.treat_symbols_as_metadata_keys_with_true_values = true
-  config.run_all_when_everything_filtered = true
-  config.filter_run :focus
-
-  # Run specs in random order to surface order dependencies. If you find an
-  # order dependency and want to debug it, you can fix the order by providing
-  # the seed, which is printed after each run.
-  #     --seed 1234
-  config.order = 'random'
 end
 

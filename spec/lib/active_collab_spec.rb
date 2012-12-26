@@ -6,6 +6,7 @@ describe 'ActiveCollab' do
     @client = ActiveCollab::Client.new(API_URL, API_KEY)
   end
 
+
   describe '#initialize' do
     it "should return an Active Collab client" do  
       @client.class.should eq(ActiveCollab::Client)
@@ -18,12 +19,17 @@ describe 'ActiveCollab' do
     end
   end
 
-  describe '#project(id)' do
-    it "should return the project you're looking for" do
-      id = CONFIG['projects']['with_tasks']
-      project = @client.project(CONFIG['projects']['with_tasks'])
-      
-      project.id.should eq(id)
+  if (TESTING_API_RESPONSES)
+
+    describe '#project(id)' do
+      it "should return the project you're looking for" do
+        id = CONFIG['projects']['with_tasks']
+        project = @client.project(CONFIG['projects']['with_tasks'])
+
+        project.id.should eq(id)
+      end
     end
+
   end
+
 end
