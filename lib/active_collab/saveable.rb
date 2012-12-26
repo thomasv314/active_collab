@@ -2,7 +2,11 @@ module ActiveCollab::Saveable
 
   module ClassMethods
     def has_save_routes(hash)
-      puts "Save routes:\n#{hash}"
+      hash.each do |key, val| 
+        self.send(:define_method, "#{key}_object_path".to_sym) do
+          build_saveable_route(val)
+        end
+      end
     end
   end
 
