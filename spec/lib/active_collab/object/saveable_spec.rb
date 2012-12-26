@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe ActiveCollab::Saveable do
+describe ActiveCollab::Object::Saveable do
 
   class TestClass 
-    include ActiveCollab::Saveable
+    include ActiveCollab::Object::Saveable
     attr_accessor :parent_id, :id 
   end
 
@@ -37,7 +37,7 @@ describe ActiveCollab::Saveable do
   describe ".has_save_routes" do
 
     class SaveRoutesTest 
-      include ActiveCollab::Saveable
+      include ActiveCollab::Object::Saveable
       attr_accessor :id
       has_save_routes({ 
         :create => "/projects/:id",
@@ -59,6 +59,7 @@ describe ActiveCollab::Saveable do
       srt.bananas_object_path.should eq("/projects/5/bananas")
       srt.create_object_path.should eq("/projects/5")
     end
+
   end
 
 end

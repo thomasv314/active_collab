@@ -1,13 +1,12 @@
-require 'active_collab/saveable'
 require 'active_collab/object'
 
-class ActiveCollab::Task < ActiveCollab::Object 
+class ActiveCollab::Task < ActiveCollab::Object::Record
  
-  include ActiveCollab::Saveable
+  include ActiveCollab::Object::Saveable
 
   has_save_routes({
-    :save => "/projects/:project_id/tasks",
-    :edit => "/projects/:project_id/tasks/:task_id/save"
+    :create => "/projects/:project_id/tasks",
+    :update => "/projects/:project_id/tasks/:task_id/save"
   })
 
   attr_accessor :id, :name, :permalink, :state, :visibility, :is_completed, 

@@ -1,4 +1,4 @@
-module ActiveCollab::Saveable
+module ActiveCollab::Object::Saveable
 
   module ClassMethods
     def has_save_routes(hash)
@@ -15,6 +15,7 @@ module ActiveCollab::Saveable
   end
 
   def save
+
     true   
   end
 
