@@ -4,4 +4,3 @@ require 'active_collab/object/saveable'
 module ActiveCollab::Object
 
 end
-

@@ -15,8 +15,14 @@ module ActiveCollab::Object::Saveable
   end
 
   def save
-
-    true   
+    json = self.as_json
+    json.delete("client") # for some reason the client attr gets added to json >:|     
+    if saved?
+      response = @client.ac_post_request(update_object_path, json)
+    else
+      response = @client.ac_post_request(create_object_path, json)
+    end
+    response 
   end
 
   def saved?
