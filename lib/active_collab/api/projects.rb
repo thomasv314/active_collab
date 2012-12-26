@@ -9,10 +9,14 @@ module ActiveCollab
         if projects_response
           if projects_response.kind_of? Hash
             [ ActiveCollab::Project.new(projects_response, self) ]
-          else projects_response.kind_of? Array
+          elsif projects_response.kind_of? Array
+            puts "WOW WAT?: #{projects_response.class}"
+            puts projects_response
             projects_response.collect do |project|
               ActiveCollab::Project.new(project, self)
             end
+          else
+            [] 
           end
         else
           false

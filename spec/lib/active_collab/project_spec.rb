@@ -6,11 +6,12 @@ describe ActiveCollab::Project do
     @client = ActiveCollab::Client.new(API_URL, API_KEY)
   end
 
-  describe "#tasks" do
-    it "should return the project's tasks if it has a client" do 
-      project = @client.projects.first
-      project.tasks.class.should eq(Array)
+  if (TESTING_API_RESPONSES)
+    describe "#tasks" do
+      it "should return the project's tasks if it has a client" do 
+        project = @client.projects.first
+        project.tasks.class.should eq(Array)
+      end
     end
   end
-
 end
