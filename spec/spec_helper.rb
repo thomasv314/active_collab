@@ -7,15 +7,23 @@
 require 'json'
 require 'active_collab'
 
-# Load the configuration file
-config_file = File.open(File.join(File.dirname(File.expand_path(__FILE__)), "config", "client.yml"))
-CONFIG = YAML.load(config_file)
-puts "Loaded this config: \n #{JSON.pretty_generate(JSON.parse(CONFIG.to_json))} \n\n"
+TEST_API_RESPONSES = ENV['TEST_API']
 
-# Set some constants
-API_URL = CONFIG['client']['api_url']
-API_KEY = CONFIG['client']['api_key']
+if (TEST_API_RESPONSES)
+  puts "TEST_API_RESPONSES variable set. Loading configuration file to test ActiveCollab API." 
+  # Load the configuration file
+  config_file = File.open(File.join(File.dirname(File.expand_path(__FILE__)), "config", "client.yml"))
+  CONFIG = YAML.load(config_file)
+  puts "Loaded this config: \n #{JSON.pretty_generate(JSON.parse(CONFIG.to_json))} \n\n"
 
+  # Set some constants
+  API_URL = CONFIG['client']['api_url']
+  API_KEY = CONFIG['client']['api_key']
+else
+  puts "TEST_API_RESPONSES variable was not set. Skipping API tests."
+  API_URL = "phony.com"
+  API_KEY = "baloney"
+end
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
