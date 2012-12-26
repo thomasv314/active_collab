@@ -5,6 +5,11 @@ class ActiveCollab::Task < ActiveCollab::Object
  
   include ActiveCollab::Saveable
 
+  has_save_routes({
+    :save => "/projects/:project_id/tasks",
+    :edit => "/projects/:project_id/tasks/:task_id/save"
+  })
+
   attr_accessor :id, :name, :permalink, :state, :visibility, :is_completed, 
     :comments_url, :comments_count, :is_locked, :subtasks_url,
     :total_subtasks, :open_subtasks, :completed_subtasks, :attachments_url,
