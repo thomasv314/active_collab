@@ -23,7 +23,6 @@ describe ActiveCollab::Object::Saveable do
   describe "#saved?" do
     it "tells you whether an object has been saved" do
       @obj.saved?.should eq(false)
-
       @obj.id = 5
       @obj.saved?.should eq(true)
     end
