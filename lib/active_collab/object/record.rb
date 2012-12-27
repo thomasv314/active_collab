@@ -1,13 +1,23 @@
+require 'active_model'
+require 'active_collab/object/saveable'
 module ActiveCollab::Object
   class Record 
 
-    def initialize(hash = {}) 
-      set_attributes(hash)
+    include ActiveCollab::Object::Saveable
+    include ActiveModel::Serialization
+    include ActiveModel::Serializers::JSON
+    
+    attr_accessor :attributes
+
+
+    def initialize(attributes = {}) 
+      @attributes = attributes 
+      set_attributes(@attributes)
     end
 
-    def initialize(hash = {}, client = nil) 
-      set_attributes(hash)
-      @client = client
+    def initialize(attributes = {}, client = nil) 
+      @attributes, @client = attributes, client
+      set_attributes(@attributes)
     end
 
     def set_attributes(hash)
