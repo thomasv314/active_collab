@@ -1,7 +1,11 @@
 module ActiveCollab::Object
   module Saveable
-    module ClassMethods
 
+    def self.included(base)
+      base.extend ClassMethods
+    end
+
+    module ClassMethods
       def has_save_routes(hash)
         hash.each do |key, val| 
           self.send(:define_method, "#{key}_object_path".to_sym) do
@@ -9,11 +13,10 @@ module ActiveCollab::Object
           end
         end
       end
-
     end
 
-    def self.included(base)
-      base.extend ClassMethods
+    def to_json
+      super(:except => :api_client)
     end
 
     def save
@@ -36,5 +39,6 @@ module ActiveCollab::Object
       end
       built_array.join("/")
     end
+
   end
 end
