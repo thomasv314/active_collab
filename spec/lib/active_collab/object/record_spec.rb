@@ -15,7 +15,6 @@ describe ActiveCollab::Object::Record do
     @obj = TestClass.new
   end
 
-
   describe "attributes" do 
     it "#has_attributes" do 
 
@@ -34,6 +33,7 @@ describe ActiveCollab::Object::Record do
   end
 
   describe "json serialization" do 
+
     it "should generate proper json" do
       @obj = TestClass.new(name: "Name", id: 5)
       @obj.to_json.should eq('{"test_class":{"id":5,"name":"Name"}}') 
@@ -44,9 +44,11 @@ describe ActiveCollab::Object::Record do
       @obj = TestClass.new({ name: "Name", id: 5 }, @client)
       @obj.to_json.should eq('{"test_class":{"id":5,"name":"Name"}}') 
     end
+
   end
 
   describe "saving an object" do
+
     describe "#save" do
       it "returns a boolean" do
         @obj.methods.include?(:save).should eq(true)
@@ -65,8 +67,8 @@ describe ActiveCollab::Object::Record do
       it "takes symbolized urls and returns a url based off object attributes" do  
         @obj.pid = 5
         @obj.id = 13
-        string = "/parent_object/:pid/object/:id"
-        @obj.build_route("/parent_object/:pid/object/:id").should eq("/parent_object/5/object/13")
+        string = "/parent/:pid/object/:id"
+        @obj.build_route("/parent/:pid/object/:id").should eq("/parent/5/object/13")
       end
     end
 
@@ -74,12 +76,12 @@ describe ActiveCollab::Object::Record do
       it "should create an instance method for each key its hash has.." do
         @obj.methods.include?(:create_object_path).should eq(true)
       end
-
       it "should return proper url routes based on object attributes" do 
         @obj.id = 5
         @obj.create_object_path.should eq("/projects/5")
       end
     end
+
   end 
 
 end
