@@ -3,7 +3,6 @@ require 'spec_helper'
 describe ActiveCollab::Object::Record do
 
   class TestClass < ActiveCollab::Object::Record 
-    
     has_attributes :pid, :id, :name
 
     has_save_routes({ 
@@ -16,15 +15,25 @@ describe ActiveCollab::Object::Record do
     @obj = TestClass.new
   end
 
-  describe "instantiating an object" do
-    it "should take attributes and generate getters and setters" do 
-      @obj.id.should eq(nil)
-      @obj.id=5
-      @obj.id.should eq(5)
+
+  describe "attributes" do 
+    it "#has_attributes" do 
+
+      class TestHasAttributesClass < ActiveCollab::Object::Record
+        has_attributes :silly, :funny
+      end
+
+      obj = TestHasAttributesClass.new
+      obj.silly = true
+      obj.funny = "lol"
+
+      obj.silly.should eq(true)
+      obj.funny.should eq("lol")
+
     end
   end
 
-  describe "serializing an object" do
+  describe "json serialization" do 
     it "should generate proper json" do
       @obj = TestClass.new(name: "Name", id: 5)
       @obj.to_json.should eq('{"test_class":{"id":5,"name":"Name"}}') 
@@ -32,9 +41,8 @@ describe ActiveCollab::Object::Record do
 
     it "should not generate a client with json in it" do
       @client = ActiveCollab::Client.new(API_URL, API_KEY)
-      @obj = TestClass.new(name: "Name", id: 5, api_client: @client)
+      @obj = TestClass.new({ name: "Name", id: 5 }, @client)
       @obj.to_json.should eq('{"test_class":{"id":5,"name":"Name"}}') 
-
     end
   end
 
@@ -67,10 +75,11 @@ describe ActiveCollab::Object::Record do
         @obj.methods.include?(:create_object_path).should eq(true)
       end
 
-      it "the instance methods for each key should return data pertinent to that instance" do 
+      it "should return proper url routes based on object attributes" do 
         @obj.id = 5
         @obj.create_object_path.should eq("/projects/5")
       end
     end
   end 
+
 end
