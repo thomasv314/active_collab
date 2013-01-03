@@ -29,7 +29,7 @@ class ActiveCollab::Client
   def ac_post_request(path, body)
     path = build_url(path)
     body['submitted'] = 'submitted'
-    response = HTTParty.post(path,body)
+    HTTParty.post(path, :body => body)
   end
 
   protected

@@ -49,36 +49,52 @@ describe ActiveCollab::Object::Record do
 
   describe "saving an object" do
 
-    describe "#save" do
-      it "returns a boolean" do
-        @obj.methods.include?(:save).should eq(true)
-      end
-    end
+    if (TESTING_API_RESPONSES)
+      describe "#save" do
+        client = ActiveCollab::Client.new(API_URL, API_KEY)
+       
+        project_name = "Project Created from ActiveCollab Gem Test Suite"
+        p = ActiveCollab::Project.new({ name: project_name }, client)
 
-    describe "#saved?" do
-      it "tells you whether an object has been saved" do
-        @obj.saved?.should eq(false)
-        @obj.id = 5
-        @obj.saved?.should eq(true)
-      end
-    end
+        it "returns false and updates the attributes if there is an error saving the attributes" do
+          p.save.should eq(false)
+          p.errors.class.should eq(Hash)
+          p.name.should eq(project_name)
+        end
 
-    describe "#build_route_string" do
-      it "takes symbolized urls and returns a url based off object attributes" do  
-        @obj.pid = 5
-        @obj.id = 13
-        string = "/parent/:pid/object/:id"
-        @obj.build_route("/parent/:pid/object/:id").should eq("/parent/5/object/13")
       end
-    end
+    else
+      describe "#save" do
+        it "returns a boolean" do
+          @obj.methods.include?(:save).should eq(true)
+        end
+      end
 
-    describe ".has_save_routes" do
-      it "should create an instance method for each key its hash has.." do
-        @obj.methods.include?(:create_object_path).should eq(true)
+      describe "#saved?" do
+        it "tells you whether an object has been saved" do
+          @obj.saved?.should eq(false)
+          @obj.id = 5
+          @obj.saved?.should eq(true)
+        end
       end
-      it "should return proper url routes based on object attributes" do 
-        @obj.id = 5
-        @obj.create_object_path.should eq("/projects/5")
+
+      describe "#build_route_string" do
+        it "takes symbolized urls and returns a url based off object attributes" do  
+          @obj.pid = 5
+          @obj.id = 13
+          string = "/parent/:pid/object/:id"
+          @obj.build_route("/parent/:pid/object/:id").should eq("/parent/5/object/13")
+        end
+      end
+
+      describe ".has_save_routes" do
+        it "should create an instance method for each key its hash has.." do
+          @obj.methods.include?(:create_object_path).should eq(true)
+        end
+        it "should return proper url routes based on object attributes" do 
+          @obj.id = 5
+          @obj.create_object_path.should eq("/projects/5")
+        end
       end
     end
 
