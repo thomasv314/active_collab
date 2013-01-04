@@ -25,13 +25,5 @@ module ActiveCollab::Object
       @client
     end
 
-    def update_attributes(hash)
-      puts "OLD ATTRIBS! \n#{@attributes}"
-      hash.each do |key, val|
-        @attributes[key.to_s] = val
-      end
-      puts "NEW ATTRIBUTES! \n #{@attributes}"
-    end
-
   end
 end

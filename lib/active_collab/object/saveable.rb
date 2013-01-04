@@ -38,7 +38,7 @@ module ActiveCollab::Object
       puts "OLD ATTRIBS! \n#{@attributes}"
       hash.each do |key, val|
         if !self.methods.include? key.to_sym
-          set_attribute_methods(key)
+          self.class.send(:set_attribute_methods, key)
         end
         @attributes[key.to_s] = val
 
