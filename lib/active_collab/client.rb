@@ -5,10 +5,7 @@ require 'active_collab/api/users'
 
 class ActiveCollab::Client
 
-  include ActiveCollab::API::Projects
-  include ActiveCollab::API::Tasks
-  include ActiveCollab::API::TimeRecords
-  include ActiveCollab::API::Users
+  attr_accessor :api_url, :api_key 
 
   def initialize(url, api_key)
     @api_url = url

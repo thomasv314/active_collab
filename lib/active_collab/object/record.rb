@@ -15,14 +15,12 @@ module ActiveCollab::Object
       update_attributes(attributes)
     end
 
-    def initialize(attributes = {}, client = nil) 
-      @attributes = {}
-      @client = client
-      update_attributes(attributes)
+    def self.all
+      
     end
 
     def client
-      @client
+      ActiveCollab.client
     end
 
   end

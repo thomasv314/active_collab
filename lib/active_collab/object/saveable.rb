@@ -16,7 +16,7 @@ module ActiveCollab::Object
 
       def has_routes(hash)
         hash.each do |key, val| 
-          self.send(:define_method, "#{key}_object_path".to_sym) do
+          self.send(:define_method, "object_#{key}_path".to_sym) do
             build_route(val)
           end
         end
@@ -59,18 +59,15 @@ module ActiveCollab::Object
 
       response = @client.ac_post_request(path, json)
       if response.code == 200
-        puts "THE REQUEST WAS SUCCESSFUL!"
         response_hash = response.parsed_response
         update_attributes(response_hash)
         true
       elsif response.code == 500
-        puts "THE REQUEST WAS SUCCESSFUL BUT INVALID!"
         response_hash = response.parsed_response
         update_attributes(response_hash.delete("object_fields"))
         @errors = response_hash
         false 
       else 
-        puts "Naw dawg. Failed."
         response
       end
     end
