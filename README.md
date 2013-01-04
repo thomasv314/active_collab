@@ -28,6 +28,7 @@ Or install it yourself as:
 
 ```ruby
 require 'active_collab'
+
 # Set your API key and your API url. 
 ActiveCollab.api_key = "abcdefghijklmnopqrstuvwxyz0123"
 ActiveCollab.api_url = "http://myactivecollabinstance.com/api.php"
@@ -37,6 +38,30 @@ projects = ActiveCollab::Project.all
 
 # Retrieve a specific project with the url http://api.com/public/index.php?path_info=projects/sample
 sample_project = ActiveCollab::Project.find("sample")
+```
+
+### Rails 2 / 3
+In the `initializers/` folder in your Rails app create a file called `active_collab.rb`
+
+```ruby
+ActiveCollab.api_key = "abcdefghijklmnopqrstuvwxyz0123"
+ActiveCollab.api_url = "http://myactivecollabinstance.com/api.php"
+```
+
+Now anywhere inside your app you can create and manipulate ActiveCollab objects in the same way you do ActiveRecord objects:
+
+```ruby
+project = ActiveCollab::Projects.new(name: "My Cool New Project")
+project.save
+=> false
+
+project.errors 
+=> { :company_id => "Cannot be blank!" }
+
+project.company_id = 1
+
+project.save
+=> true
 ```
 
 ## Tests
