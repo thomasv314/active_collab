@@ -5,7 +5,7 @@ describe ActiveCollab::Object::Record do
   class TestClass < ActiveCollab::Object::Record 
     has_attributes :pid, :id, :name
 
-    has_save_routes({ 
+    has_routes({ 
       :create => "/projects/:id",
       :update => "/projects/:id/edit",
     })
@@ -33,7 +33,6 @@ describe ActiveCollab::Object::Record do
   end
 
   describe "json serialization" do 
-
     it "should generate proper json" do
       @obj = TestClass.new(name: "Name", id: 5)
       @obj.to_json.should eq('{"test_class":{"id":5,"name":"Name"}}') 
@@ -44,11 +43,9 @@ describe ActiveCollab::Object::Record do
       @obj = TestClass.new({ name: "Name", id: 5 }, @client)
       @obj.to_json.should eq('{"test_class":{"id":5,"name":"Name"}}') 
     end
-
   end
 
   describe "saving an object" do
-
     if (TESTING_API_RESPONSES)
       describe "#save" do
         client = ActiveCollab::Client.new(API_URL, API_KEY)
@@ -87,7 +84,7 @@ describe ActiveCollab::Object::Record do
         end
       end
 
-      describe ".has_save_routes" do
+      describe ".has_routes" do
         it "should create an instance method for each key its hash has.." do
           @obj.methods.include?(:create_object_path).should eq(true)
         end
@@ -97,7 +94,6 @@ describe ActiveCollab::Object::Record do
         end
       end
     end
-
   end 
 
 end

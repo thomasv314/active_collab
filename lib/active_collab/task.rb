@@ -4,7 +4,7 @@ class ActiveCollab::Task < ActiveCollab::Object::Record
  
   include ActiveCollab::Object::Saveable
 
-  has_save_routes({
+  has_routes({
     :create => "/projects/:project_id/tasks",
     :update => "/projects/:project_id/tasks/:task_id/save"
   })

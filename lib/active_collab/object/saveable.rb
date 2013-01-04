@@ -14,7 +14,7 @@ module ActiveCollab::Object
         end
       end
 
-      def has_save_routes(hash)
+      def has_routes(hash)
         hash.each do |key, val| 
           self.send(:define_method, "#{key}_object_path".to_sym) do
             build_route(val)
@@ -35,13 +35,11 @@ module ActiveCollab::Object
     end
 
     def update_attributes(hash)
-      puts "OLD ATTRIBS! \n#{@attributes}"
       hash.each do |key, val|
         if !self.methods.include? key.to_sym
           self.class.send(:set_attribute_methods, key)
         end
         @attributes[key.to_s] = val
-
       end
       @attributes 
     end
