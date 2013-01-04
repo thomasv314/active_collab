@@ -62,7 +62,9 @@ module ActiveCollab::Object
       response = @client.ac_post_request(path, json)
       if response.code == 200
         puts "THE REQUEST WAS SUCCESSFUL!"
-        response
+        response_hash = response.parsed_response
+        update_attributes(response_hash)
+        true
       elsif response.code == 500
         puts "THE REQUEST WAS SUCCESSFUL BUT INVALID!"
         response_hash = response.parsed_response
