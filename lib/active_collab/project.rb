@@ -6,6 +6,7 @@ class ActiveCollab::Project < ActiveCollab::Object::Record
 
   has_routes({
     :create => "/projects/add",
+    :read   => "/projects/:id", 
     :update => "/projects/:id/edit",
     :index  => "/projects"
   })

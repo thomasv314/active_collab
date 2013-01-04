@@ -37,3 +37,5 @@ else
   API_KEY = "baloney"
 end
 
+ActiveCollab.api_url = API_URL
+ActiveCollab.api_key = API_KEY

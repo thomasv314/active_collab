@@ -24,21 +24,19 @@ Or install it yourself as:
 
 ## Usage
 
+### Standalone
+
 ```ruby
 require 'active_collab'
+# Set your API key and your API url. 
+ActiveCollab.api_key = "abcdefghijklmnopqrstuvwxyz0123"
+ActiveCollab.api_url = "http://myactivecollabinstance.com/api.php"
 
-#create a client
-url = "http://myactivecollabinstance.com/api.php"
-api_key = MY_API_KEY
-client = ActiveCollab::Client.new(url,api_key)
+# Retrieve an array of all the projects
+projects = ActiveCollab::Project.all
 
-#listing projects
-projects = client.projects
-
-
-#listing tasks for project_id = 1
-tasks = client.tasks(1)
-
+# Retrieve a specific project with the url http://api.com/public/index.php?path_info=projects/sample
+sample_project = ActiveCollab::Project.find("sample")
 ```
 
 ## Tests
