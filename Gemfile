@@ -14,6 +14,7 @@ end
 
 group :development do
   gem 'rspec'
+  gem 'fuubar'
   gem 'guard'
   gem 'guard-rspec'
   gem 'rb-inotify', :require => false
