@@ -46,7 +46,7 @@ If authentication fails for whatever reason it will return false, otherwise it w
 
 ```ruby
 token = ActiveCollab::Client.authenticate("myemail@mycompany.com", "mypassword123")
-ActiveCollab.api_key = Token
+ActiveCollab.api_key = token
 ```
 
 ### Rails 2 / 3
