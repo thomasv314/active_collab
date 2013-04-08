@@ -5,4 +5,8 @@ client:
 projects: 
   with_tasks: "slug-of-project-with-tasks"
   without_tasks: "slug-of-project-without-any-tasks"
-  bad_url: "lolololwat" 
+  bad_url: "lolololwat"
+
+user:
+  name: "username"
+  password: "password"
