@@ -29,7 +29,7 @@ Or install it yourself as:
 ```ruby
 require 'active_collab'
 
-# Set your API key and your API url. 
+# Authenticating with ActiveCollab
 ActiveCollab.api_key = "abcdefghijklmnopqrstuvwxyz0123"
 ActiveCollab.api_url = "http://myactivecollabinstance.com/api.php"
 
@@ -38,6 +38,15 @@ projects = ActiveCollab::Project.all
 
 # Retrieve a specific project with the url http://api.com/public/index.php?path_info=projects/sample
 sample_project = ActiveCollab::Project.find("sample")
+```
+
+### Authenticating and making requests as specific users
+So long as the authenticating user's role has the 'Use API' permission in the ActiveCollab admin panel, you can initialize a new client and #authenticate(username, password) to retrieve an API token.
+If authentication fails for whatever reason it will return false, otherwise it will return a string token.
+
+```ruby
+token = ActiveCollab::Client.authenticate("myemail@mycompany.com", "mypassword123")
+ActiveCollab.api_key = Token
 ```
 
 ### Rails 2 / 3
