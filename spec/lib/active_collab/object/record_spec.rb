@@ -78,7 +78,7 @@ describe ActiveCollab::Object::Record do
         client = ActiveCollab::Client.new(API_URL, API_KEY)
 
         project_name = "Project Created from ActiveCollab Gem Test Suite"
-        p = ActiveCollab::Project.new({ name: project_name }, client)
+        p = ActiveCollab::Project.new( name: project_name )
 
         it "returns false and updates the attributes if there is an error saving the attributes" do
           p.save.should eq(false)

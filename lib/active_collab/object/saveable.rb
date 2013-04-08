@@ -52,12 +52,13 @@ module ActiveCollab::Object
       json = self.as_json
 
       if self.saved?
-        path = self.update_object_path
+        path = self.object_update_path
       else
-        path = self.create_object_path
+        path = self.object_create_path
       end
 
-      response = @client.ac_post_request(path, json)
+      response = ActiveCollab.client.ac_post_request(path, json)
+
       if response.code == 200
         response_hash = response.parsed_response
         update_attributes(response_hash)

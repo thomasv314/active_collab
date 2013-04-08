@@ -23,25 +23,4 @@ describe 'ActiveCollab Module' do
     end 
   end
 
-  pending "This needs to be moved to the project spec and not the module." do
-    describe '#projects' do
-      it "should return an array of projects" do
-        @client.projects.class.should eq(Array)
-      end
-    end
-
-    if (TESTING_API_RESPONSES)
-
-      describe '#project(id)' do
-        it "should return the project you're looking for" do
-          id = CONFIG['projects']['with_tasks']
-          project = @client.project(CONFIG['projects']['with_tasks'])
-
-          project.id.should eq(id)
-        end
-      end
-
-    end
-  end
-
 end
