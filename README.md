@@ -8,7 +8,7 @@ This is a work in progress, forked from `jera/active_collab`.
 It has at this point become largely a rewrite of the original code base to provide a more ActiveModel-ish feel to the client.
 I have tried my hardest (and I think I've succeeded) at maintaining backwards compatibility with the original codebase and it's methods.
 
-[![Build Status](https://travis-ci.org/tommyvyo/active_collab.png?branch=master)](https://travis-ci.org/tommyvyo/active_collab)
+[![Build Status](https://travis-ci.org/thomasv314/active_collab.png?branch=master)](https://travis-ci.org/tommyvyo/active_collab)
 
 ## Installation
 
