@@ -1,5 +1,7 @@
 # ActiveCollab
 
+###### This project is no longer maintained or developed.
+
 Ruby API Client for ActiveCollab 3.
 This is a work in progress, forked from `jera/active_collab`. 
 
